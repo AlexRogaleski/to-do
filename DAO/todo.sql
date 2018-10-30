@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 23/10/2018 às 18:59
+-- Tempo de geração: 30/10/2018 às 19:14
 -- Versão do servidor: 5.7.21-1
 -- Versão do PHP: 7.2.4-1+b1
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `todo`
 --
+CREATE DATABASE IF NOT EXISTS `todo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `todo`;
 
 -- --------------------------------------------------------
 
@@ -51,6 +53,14 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Fazendo dump de dados para tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`) VALUES
+(1, 'Alex', 'alex@email.com', '123'),
+(3, 'Alex', 'teste@email.com', '123');
+
+--
 -- Índices de tabelas apagadas
 --
 
@@ -81,7 +91,7 @@ ALTER TABLE `tarefa`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Restrições para dumps de tabelas
 --

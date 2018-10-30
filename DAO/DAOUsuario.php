@@ -1,6 +1,6 @@
 <?php
 require_once("Banco.php");
-require_once("Model/ModelUsuario.php");
+require_once("model/ModelUsuario.php");
 
 class DAOUsuario
 {
@@ -30,7 +30,7 @@ class DAOUsuario
                 ":senha" => $usuario->getSenha()
             );
 
-            return $this->banco->ExecuteNonQuery($sql, $params);
+            return $this->banco->ExecuteNonQuery($sql, $param);
         } catch (PDOException $e) {
             if ($this->debug) {
                 echo "Erro: {$e->getMessage()}";
