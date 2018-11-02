@@ -21,6 +21,17 @@ class ControllerUsuario
         }
     }
 
+    public function Atualizar(ModelUsuario $usuario)
+    {
+        if ((strlen(trim($usuario->getNome())) > 1) and
+            (strlen(trim($usuario->getEmail())) > 1) and
+            (strlen(trim($usuario->getSenha())) > 1)) {
+            return $this->DAOUsuario->Atualizar($usuario);
+        } else {
+            return false;
+        }
+    }
+
     public function Deletar($id)
     {
         if ($id > 0) {

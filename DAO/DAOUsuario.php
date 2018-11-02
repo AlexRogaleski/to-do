@@ -53,6 +53,25 @@ class DAOUsuario
         }
     }
 
+    public function Atualizar(ModelUsuario $usuario)
+    {
+        try {
+            $sql = "update usuario set nome = :nome, email = :email, senha = :senha where id = :id";
+
+            $param = array(
+                ":nome" => $usuario->getNome(),
+                ":email" => $usuario->getEmail(),
+                ":senha" => $usuario->getSenha(),
+                ":id" => $usuario->getId());
+
+            return $this->banco->ExecuteNonQuery($sql, $param);
+        } catch (PDOException $e) {
+            if ($this->debug) {
+                echo "Erro: {$e->getMessage()}";
+            }
+        }
+    }
+
     public function PesquisarTodos()
     {
         try {
@@ -75,5 +94,12 @@ class DAOUsuario
                 echo "Erro: {$e->getMessage()}";
             }
         }
+    }
+
+    public function PesquisarUsuario($id)
+    {
+        $sql = "select * from usuario where id = :id";
+
+        $param = array(":id" => $id);
     }
 }
