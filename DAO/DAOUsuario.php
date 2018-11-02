@@ -37,4 +37,43 @@ class DAOUsuario
             }
         }
     }
+
+    public function Deletar($id)
+    {
+        try {
+            $sql = "delete from usuario where id = :id";
+
+            $param = array(":id" => $id);
+
+            return $this->banco->ExecuteNonQuery($sql, $param);
+        } catch (PDOException $e) {
+            if ($this->debug) {
+                echo "Erro: {$e->getMessage()}";
+            }
+        }
+    }
+
+    public function PesquisarTodos()
+    {
+        try {
+            $sql = "select id, nome, email, senha from usuario";
+            $objetos = $this->banco->ExecuteQuery($sql);
+
+            $usuarios = array();
+            foreach ($objetos as $objeto) {
+                $usuario = new ModelUsuario();
+                $usuario->setId($objeto["id"]);
+                $usuario->setNome($objeto["nome"]);
+                $usuario->setEmail($objeto["email"]);
+                $usuario->setSenha($objeto["senha"]);
+
+                $usuarios[] = $usuario;
+            }
+            return $usuarios;
+        } catch (PDOException $e) {
+            if ($this->debug) {
+                echo "Erro: {$e->getMessage()}";
+            }
+        }
+    }
 }

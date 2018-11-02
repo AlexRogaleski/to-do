@@ -20,4 +20,18 @@ class ControllerUsuario
             return false;
         }
     }
+
+    public function Deletar($id)
+    {
+        if ($id > 0) {
+            return $this->DAOUsuario->Deletar($id);
+        } else {
+            return null;
+        }
+    }
+
+    public function PesquisarTodos()
+    {
+        return $this->DAOUsuario->PesquisarTodos();
+    }
 }
