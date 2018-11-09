@@ -98,8 +98,47 @@ class DAOUsuario
 
     public function PesquisarUsuario($id)
     {
-        $sql = "select * from usuario where id = :id";
+        try {
+            $sql = "select * from usuario where id = :id";
 
-        $param = array(":id" => $id);
+            $param = array(":id" => $id);
+
+            $objeto = $this->banco->ExecuteQueryOneRow($sql, $param);
+
+            $usuario = new ModelUsuario();
+            $usuario->setId($objeto["id"]);
+            $usuario->setNome($objeto["nome"]);
+            $usuario->setEmail($objeto["email"]);
+            $usuario->setSenha($objeto["senha"]);
+
+            return $usuario;
+        } catch (PDOException $e) {
+            if ($this->debug) {
+                echo "Erro: {$e->getMessage()}";
+            }
+        }
+    }
+
+    public function TestarLogin($email, $senha)
+    {
+        try {
+            $sql = "select * from usuario where email = :email and senha = :senha";
+
+            $param = array(":email" => $email, ':senha' => $senha);
+
+            $objeto = $this->banco->ExecuteQueryOneRow($sql, $param);
+
+            $usuario = new ModelUsuario();
+            $usuario->setId($objeto["id"]);
+            $usuario->setNome($objeto["nome"]);
+            $usuario->setEmail($objeto["email"]);
+            $usuario->setSenha($objeto["senha"]);
+
+            return $usuario;
+        } catch (PDOException $e) {
+            if ($this->debug) {
+                echo "Erro: {$e->getMessage()}";
+            }
+        }
     }
 }

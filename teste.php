@@ -4,7 +4,7 @@ echo '<h2>Cadastrando Novo Usuário</h2>';
 require_once("model/ModelUsuario.php");
 require_once("controller/ControllerUsuario.php");
 
-$op = 4;
+$op = 5;
 if ($op == 1) {
     $usuario = new ModelUsuario;
     $usuario->setNome('Alex');
@@ -40,4 +40,9 @@ if ($op == 1) {
     $controlUsuario = new ControllerUsuario;
 
     var_dump($controlUsuario->Atualizar($usuario));
+} elseif ($op == 5) {
+    $controlUsuario = new ControllerUsuario;
+    $email = '';
+    $senha = '433431';
+    var_dump($controlUsuario->TestarLogin($email, $senha));
 }

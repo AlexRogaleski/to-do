@@ -45,4 +45,22 @@ class ControllerUsuario
     {
         return $this->DAOUsuario->PesquisarTodos();
     }
+
+    public function PesquisarUsuario($id)
+    {
+        if ($id) {
+            return $this->DAOUsuario->PesquisarUsuario($id);
+        } else {
+            return null;
+        }
+    }
+
+    public function TestarLogin($email, $senha)
+    {
+        if (($email) and ($senha)) {
+            return $this->DAOUsuario->TestarLogin($email, $senha);
+        } else {
+            return false;
+        }
+    }
 }
