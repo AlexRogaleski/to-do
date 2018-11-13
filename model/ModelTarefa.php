@@ -1,7 +1,5 @@
 <?php
-include "/ModelUsuario";
-
-class Tarefa
+class ModelTarefa
 {
     protected $id;
     protected $usuario_id;
@@ -32,12 +30,12 @@ class Tarefa
         $this->usuario_id = $usuario_id;
     }
 
-    public function getUsuario()
-    {
-        $usuario = new ModeloUsuario;
-        $usuario->getUsuario($this->usuario_id);
-        return $usuario;
-    }
+    // public function getUsuario()
+    // {
+    //     $usuario = new ModeloUsuario;
+    //     $usuario->getUsuario($this->usuario_id);
+    //     return $usuario;
+    // }
 
     public function getNome()
     {
@@ -67,6 +65,16 @@ class Tarefa
     public function setDataTarefa($data_tarefa)
     {
         $this->data_tarefa = $data_tarefa;
+    }
+
+    public function getDataCadastro()
+    {
+        return $this->data_cadastro;
+    }
+
+    public function setDataCadastro($data_cadastro)
+    {
+        $this->data_cadastro = $data_cadastro;
     }
     
     public function getStatus()
